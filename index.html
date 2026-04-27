@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запрошення: Юля та Андрій</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f7fcfb; 
+            color: #4a5553;
+            overflow-x: hidden;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 25px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        h1 { 
+            font-family: 'Great Vibes', cursive; 
+            color: #7a9c96; 
+            font-size: clamp(3.2rem, 10vw, 5.5rem); 
+            margin: 0.2em 0;
+            font-weight: normal;
+        }
+        
+        h2 { 
+            font-weight: 300; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-size: clamp(1rem, 4vw, 1.2rem);
+            color: #8fa8a4;
+            margin-bottom: 20px;
+        }
+
+        p { font-size: clamp(1rem, 3vw, 1.15rem); line-height: 1.7; max-width: 600px; margin: 15px auto; }
+        strong { color: #7a9c96; font-weight: 400; }
+
+        #countdown {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+        }
+        .time-box {
+            background: #ffffff;
+            padding: 12px 8px;
+            border-radius: 12px;
+            min-width: 65px;
+            box-shadow: 0 8px 20px rgba(122, 156, 150, 0.1);
+            border: 1px solid #eef7f6;
+        }
+        .time-box span { display: block; font-size: 1.6rem; font-weight: 400; color: #7a9c96; }
+        .label { font-size: 0.6rem; text-transform: uppercase; color: #a1b5b2; margin-top: 5px; }
+
+        .message-block {
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px solid rgba(122, 156, 150, 0.2);
+        }
+
+        #page2 { background-color: #f0f7f6; height: auto; padding: 80px 25px; }
+        .schedule { margin: 30px 0; text-align: left; border-left: 1px solid #c2d6d3; padding-left: 25px; max-width: 450px; }
+        .schedule-item { margin-bottom: 15px; font-size: 1.05rem; line-height: 1.4; }
+        
+        .location-link {
+            display: inline-block;
+            margin-top: 5px;
+            color: #7a9c96;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px dashed #7a9c96;
+            margin-bottom: 25px;
+        }
+
+        /* Оновлений блок кольорів (в один рядок) */
+        .colors { 
+            display: flex; 
+            gap: 8px; 
+            margin: 25px 0; 
+            flex-wrap: nowrap; /* Забороняє перенесення на новий рядок */
+            justify-content: center; 
+            width: 100%;
+            max-width: 500px;
+        }
+        .color-circle { 
+            width: clamp(25px, 8vw, 40px); /* Адаптивний розмір */
+            height: clamp(25px, 8vw, 40px); 
+            border-radius: 50%; 
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            flex-shrink: 0; /* Не дозволяє кружечкам стискатися занадто сильно */
+        }
+        
+        .btn {
+            background-color: #7a9c96;
+            color: #ffffff;
+            padding: 18px 45px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: inline-block;
+            font-weight: 400;
+        }
+        .btn:hover { background-color: #5d7d78; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        .ps-block {
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #7a9c96;
+            max-width: 500px;
+            margin: 20px auto;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #a1b5b2;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+        }
+    </style>
+</head>
+<body>
+
+    <section id="page1">
+        <h2>Запрошення на весілля</h2>
+        <h1>Юля & Андрій</h1>
+        
+        <div id="countdown">
+            <div class="time-box"><span id="days">00</span><div class="label">Днів</div></div>
+            <div class="time-box"><span id="hours">00</span><div class="label">Год</div></div>
+            <div class="time-box"><span id="mins">00</span><div class="label">Хв</div></div>
+            <div class="time-box"><span id="secs">00</span><div class="label">Сек</div></div>
+        </div>
+
+        <div class="message-block">
+            <p>Дорогі  пане Олег, пані Оксана, Юра та Соломійка . </p>
+            <p>З любов'ю та вдячністю запрошуємо Вас розділити з нами особливий день — день створення нашої сім'ї.</p>
+            <p>Ваша присутність зробить наше свято ще більш радісним, теплим і незабутнім.</p>
+            <p>Будемо щасливі розділити з вами цю важливу мить.</p>
+        </div>
+        
+        <div class="scroll-hint">Гортайте вниз ↓</div>
+    </section>
+
+    <section id="page2">
+        <h2>Де та коли</h2>
+        <p>Чекаємо на вас <strong>23 травня 2026 року</strong></p>
+        
+        <div class="schedule">
+            <div class="schedule-item"><strong>14:30</strong> — Церемонія вінчання</div>
+            <div class="schedule-item"><strong>15:00</strong> — Трансфер з церкви до ресторану</div>
+            <div class="schedule-item"><strong>15:30</strong> — Весільний банкет</div>
+            <div class="schedule-item"><strong>20:00</strong> — Святковий торт</div>
+            <div class="schedule-item"><strong>23:00</strong> — Трансфер з ресторану до м. Львова</div>
+        </div>
+        
+        <p><strong>Церемонія:</strong><br>м. Львів, церква св. свщмч. Йосафата, вул. Замарстинівська, 134А</p>
+        <a href="https://maps.app.goo.gl/R5kvbWENKFvddie9A" target="_blank" class="location-link">Відкрити на карті</a>
+
+        <p><strong>Бенкет:</strong><br>м. Львів, 7-й км Київської траси, Парк-готель "Древній Град"</p>
+        <a href="https://maps.app.goo.gl/PxcXXEKww51vghQs9" target="_blank" class="location-link">Відкрити на карті</a>
+        
+        <div class="scroll-hint" style="position: static; margin-top: 20px;">Гортайте далі ↓</div>
+    </section>
+
+    <section id="page3">
+        <h2>Дрес-код</h2>
+        <p>Будемо вдячні за дотримання, якщо у своєму образі Ви використаєте дані кольори та підтримаєте настрій нашого свята:</p>
+        
+        <div class="colors">
+            <div class="color-circle" style="background-color: #D9D2CB;"></div>
+            <div class="color-circle" style="background-color: #CDBEB2;"></div>
+            <div class="color-circle" style="background-color: #B98474;"></div>
+            <div class="color-circle" style="background-color: #D9C38F;"></div>
+            <div class="color-circle" style="background-color: #C7CED1;"></div>
+            <div class="color-circle" style="background-color: #5A4438;"></div>
+            <div class="color-circle" style="background-color: #242325;"></div>
+        </div>
+
+        <h2>Будемо чекати на вас</h2>
+        <p>Будь ласка, повідомте нам про Вашу присутність до <strong>13 травня</strong>. Ви можете зробити це в один клік прямо зі свого телефону:</p>
+        
+        <a href="viber://chat?number=%2B380932173049" class="btn">Написати нам у Viber</a>
+
+        <div class="ps-block">
+            P.S. Якщо Ви бажаєте подарувати нам квіти, будемо вдячні замість них отримати пляшку вашого улюбленого алкоголю, який ми посмакуємо разом.
+        </div>
+        
+        <p style="margin-top: 40px; font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #8fa8a4;">До зустрічі!</p>
+    </section>
+
+    <script>
+        const weddingDate = new Date("May 23, 2026 14:30:00").getTime();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+
+            if (diff <= 0) {
+                document.getElementById("countdown").innerHTML = "<p style='font-size: 1.5rem; color: #7a9c96;'>Цей день настав!</p>";
+                return;
+            }
+
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
